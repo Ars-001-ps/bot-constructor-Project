@@ -1,11 +1,6 @@
 from dotenv import load_dotenv
-import os
-
 load_dotenv()
+from bots.chat_bot.conditions import response
 
-print("Ключ загружен:", os.getenv("OPENAI_API_KEY")[:10] + "...")  # покажет первые 10 символов
-
-from bots.gpt_service import ask_gpt
-
-answer = ask_gpt("привет, как дела?")
-print(answer)
+reply_1 = response('кто ты')
+print('ответ 1:', reply_1)
