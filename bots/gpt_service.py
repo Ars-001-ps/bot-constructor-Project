@@ -2,6 +2,8 @@ import os
 import requests
 import json
 import urllib3
+from dotenv import load_dotenv
+load_dotenv()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -31,5 +33,7 @@ def ask_gpt(prompt):
             {"role": "user", "content": prompt}
         ]
     }
-    response = requests.post(API_URL, headers=headers, json=payload, verify=False)
-    return response.json()["choices"][0]["message"]["content"]
+    resp = requests.post(API_URL, headers=headers, json=payload, verify=False)
+    print("Status:", resp.status_code)
+    print("Response:", resp.text)
+    return resp.json()["choices"][0]["message"]["content"]
